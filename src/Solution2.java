@@ -1,3 +1,7 @@
+/**
+ * 替换字符串中的空格
+ * 在java中可以利用StringBuffer来实现可变字符串
+ */
 public class Solution2 {
     public static void main(String[] args) {
         StringBuffer str = new StringBuffer("Hello world");
