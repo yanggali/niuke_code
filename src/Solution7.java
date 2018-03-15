@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Solution {
+public class Solution7 {
     //stack1用于入队操作
     Stack<Integer> stack1 = new Stack<Integer>();
     //stack2用于出队操作

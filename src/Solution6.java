@@ -7,7 +7,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+public class Solution6 {
     public TreeNode reConstructBinaryTree(int [] pre, int [] in) {
         return constructBinaryTree(pre, 0,pre.length-1, in,0,in.length-1);
     }
