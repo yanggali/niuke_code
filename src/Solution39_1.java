@@ -1,5 +1,6 @@
 /**
  * 判断该树是否为平衡二叉树
+ * 先判断子树，后续遍历
  */
 public class Solution39_1 {
     public boolean IsBalanced_Solution(TreeNode root) {
