@@ -5,7 +5,7 @@
 public class Solution50 {
     public static void main(String[] args) {
         Solution50 s = new Solution50();
-        System.out.println(s.StrToInt("123"));
+        System.out.println(s.StrToInt("-"));
     }
     public int StrToInt(String str) {
         if(str.equals("") || str.equals("0")) return 0;
