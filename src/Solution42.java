@@ -1,3 +1,7 @@
+/**
+ * 翻转单词顺序
+ * 例如：“I am a student.”翻转为“student. a am I”
+ */
 public class Solution42 {
     public static void main(String[] args) {
         Solution42 s = new Solution42();
