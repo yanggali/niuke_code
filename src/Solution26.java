@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 复杂链表的复制
  * 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），
@@ -26,20 +28,7 @@ public class Solution26 {
             newNode = newNode.next.next;
         }
         //将复制链表抽取出来
-//        RandomListNode pCur = pHead;
-//        RandomListNode head = pHead.next;
-//        RandomListNode cur = head;
-//        pCur = pHead;
-//        //拆分链表
-//        while(pCur!=null){
-//            pCur.next = pCur.next.next;
-//            if(cur.next!=null)
-//                cur.next = cur.next.next;
-//            cur = cur.next;
-//            pCur = pCur.next;
-//        }
-//        return head;
-        RandomListNode pCur = pHead;
+
         RandomListNode newHead = pHead.next;
         RandomListNode newCopy = newHead;
         while (pHead != null) {
@@ -52,35 +41,42 @@ public class Solution26 {
         }
         return newHead;
     }
-    public void copyNode(RandomListNode node){
-        while (node != null){
-            RandomListNode copy = new RandomListNode(node.label);
-            copy.next = node.next;
-            node.next = copy;
-            node = copy.next;
+
+    /**
+     * 用map，空间换取时间
+     * @param pHead
+     * @return
+     */
+    public RandomListNode Clone1(RandomListNode pHead){
+        if (pHead == null) {
+            return null;
         }
-    }
-
-    public void setRandom(RandomListNode node) {
-        RandomListNode copyRandom;
-        while (node != null) {
-            copyRandom = node.random.next;
-            node.next.random = copyRandom;
-            node = node.next.next;
+        HashMap<RandomListNode, RandomListNode> map = new HashMap<>();
+        RandomListNode head = pHead;
+        RandomListNode newPrev = null;
+        RandomListNode newHead = null;
+        while (pHead != null) {
+            RandomListNode newNode = new RandomListNode(pHead.label);
+            map.put(pHead,newNode);
+            pHead = pHead.next;
+            if(newPrev == null){
+                newHead = newNode;
+            }
+            else {
+                newPrev.next = newNode;
+            }
+            newPrev = newNode;
         }
-    }
+        RandomListNode curNode = head;
+        RandomListNode newCurNode = newHead;
+        while (curNode != null && newCurNode != null) {
 
-    public RandomListNode split(RandomListNode node) {
-        RandomListNode newNext;
-        RandomListNode newHead = new RandomListNode(0);
-        RandomListNode newNode = newHead;
-        while (node != null) {
-            newNode = node.next;
-            node.next = newNode.next;
-            newNext = node.next.next;
-            newNode.next = newNext;
+            RandomListNode random = curNode.random;
+            RandomListNode newRandom = map.get(random);
+            newCurNode.random = newRandom;
 
-            node = node.next;
+            curNode = curNode.next;
+            newCurNode = newCurNode.next;
         }
         return newHead;
     }
